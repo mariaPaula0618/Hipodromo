@@ -9,7 +9,10 @@ public class HiloTiempo extends Thread {
 
 	private int segundos;
 	
-	
+	/**
+	*This class handle the time of the bet 
+	* At the end of the time throw an exception to start the race
+	*/
 	public HiloTiempo(ServidorHipodromoThread i){
 		servidor=i;
 		
