@@ -52,7 +52,11 @@ public class ClienteHipodromo extends JFrame{
 	private CancionUDPCliente cancion;
 	private static UDPMulticastClient caballosMoviendose; 
 
-	
+	/**
+	* class that handle the client, 
+	* also allows the visualization of the race
+	*Works like a frame
+*/
 	public ClienteHipodromo() {
 		apuestaAbierta=true;
 		cancion= new CancionUDPCliente();
@@ -89,7 +93,7 @@ public class ClienteHipodromo extends JFrame{
 		i.setVisible(true);
 		i.setResizable(false);
 		
-		cedula= JOptionPane.showInputDialog(null, "Ingrese su cédula");
+		cedula= JOptionPane.showInputDialog(null, "Ingrese su cÃ©dula");
 
 		//Sentencias para implementar ssl
 //		System.setProperty("javax.net.ssl.trustStore", TRUSTTORE_LOCATION);
@@ -114,13 +118,16 @@ public class ClienteHipodromo extends JFrame{
 
 
 
-//			System.out.print("Digite el número del caballo y separado por ',' su apuesta "+"\n");
+//			System.out.print("Digite el nÃºmero del caballo y separado por ',' su apuesta "+"\n");
 
-			//Solo se ejecuta una vez pero necesito mantener viva la conexión
+			//Solo se ejecuta una vez pero necesito mantener viva la conexiÃ³n
 			//			apuesta = in.readLine();
 			//			escritorC.println(apuesta);
 
-		
+		/*
+		*Method that initialize the audio stream
+		*
+		*/
 			initiateAudio();
 			
 			
@@ -136,7 +143,10 @@ public class ClienteHipodromo extends JFrame{
 	public static void conexionPosisionCaballos() {
 		
 	}
-	
+	/*
+	* Method that recover of the frame the name of the horse and the amount of money wagered
+	*the client just can wagered once
+	*/
 	public void apostarCliente() {
 		panelApuestas.desabilidarCaballo();
 		nombreC=obtenerNombre();
@@ -147,9 +157,17 @@ public class ClienteHipodromo extends JFrame{
 		panelCarrera.ponerNombre(nombreC);
 
 		}
+
+	/*
+	* this Method recover the name of the horse
+	*/
 		public String obtenerNombre() {
 			return panelApuestas.nombreCaballo();
 		}
+	/*
+	*this  method recover the amount of money wagered
+	*
+	*/
 		public String obtenerApuesta() {
 			return panelApuestas.apuestaCaballo();
 
@@ -162,7 +180,9 @@ public class ClienteHipodromo extends JFrame{
 			this.repaint();
 		}
 
-	
+	/**
+	*This method allows send the amount of monery wagered,, the name  of the horse and id of the client to the server
+	*/
 	public void apostar(String[] apuestaX) {
 		String a=apuestaX[0];
 		String b=apuestaX[1];
@@ -173,7 +193,10 @@ public class ClienteHipodromo extends JFrame{
 	}
 	
 	
-	
+	/**
+	*
+	*Method that get audio format
+	*/
 	public static  AudioFormat getAudioFormat() {
 		float sampleRate = 16000F;
 		int sampleSizeInBits = 16;
@@ -182,7 +205,11 @@ public class ClienteHipodromo extends JFrame{
 		boolean bigEndian = false;
 		return new AudioFormat(sampleRate, sampleSizeInBits, channels, signed, bigEndian);
 	}
-
+	
+	/**
+	*Method that receive the audio stream
+	*
+	*/
 	public static  void playAudio() {
 		byte[] buffer = new byte[10000];
 		try {
@@ -196,7 +223,11 @@ public class ClienteHipodromo extends JFrame{
 			// Handle exceptions
 		}
 	}
-
+	
+	/*
+	* 
+	*this method initialize the conexion with the server to receive the Stream audio
+	*/
 	public static void initiateAudio() {
 		try {
 			MulticastSocket multicastSocket = new MulticastSocket(8000);
@@ -233,6 +264,11 @@ public class ClienteHipodromo extends JFrame{
 			e.printStackTrace();
 		}
 	}
+	/**
+	*Method that allows write all the information about the race 
+	*
+	*/
+	
 public void escribirArchivo() {
 	try {
 	File filedData= new File("BasesDeDatos/"+cedula+".txt");
@@ -320,9 +356,9 @@ public void escribirArchivo() {
 	
 	public void ganador(String a) {
 		if(nombreC.equals(a)) {
-			gano="Ganó";
+			gano="GanÃ³";
 		}else {
-			gano="No Ganó";
+			gano="No GanÃ³";
 		}
 		escribirArchivo();
 	JOptionPane.showMessageDialog(this, a, "Ganador Carrera",JOptionPane.INFORMATION_MESSAGE);	
