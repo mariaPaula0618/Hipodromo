@@ -9,7 +9,11 @@ public class HiloCaballo extends Thread {
 
 	private Caballo caballo;
 	private ArrayList<Caballo> ganador;
-
+/**
+* This class handle all related with the movement of the horse
+* The movement of the horse are random and the winner too.
+* also this class is responsible for keeping the order of arrival
+*/
 	public HiloCaballo(Caballo caballo, ArrayList<Caballo> caballoGanador) {
 		this.caballo=caballo;
 		velocidad = new int[] {10,20,30,40,50};
@@ -18,6 +22,9 @@ public class HiloCaballo extends Thread {
 
 
 	@Override
+	/**
+	*Change in a random way the movement of one horse
+	*/
 	public void run() {
 		// TODO Auto-generated method stub
 		super.run();
