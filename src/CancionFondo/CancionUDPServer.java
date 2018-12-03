@@ -15,9 +15,14 @@ public class CancionUDPServer extends Thread{
 	public CancionUDPServer() {
 		
 	}
+	/*
+	*Metodo que permite la transmicion de la cancion (Streaming)
+	*
+	*
+	*/
 
 	public void run() {
-		File soundFile = AudioUtil.getSoundFile("./Data/Tiësto - Seavolution Version Extendida (Full Song) - Larga.wav");
+		File soundFile = AudioUtil.getSoundFile("./Data/TiÃ«sto - Seavolution Version Extendida (Full Song) - Larga.wav");
 
 		System.out.println("server: " + soundFile);
 
