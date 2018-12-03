@@ -10,6 +10,11 @@ public class WebServer extends Thread {
 		System.out.println("Webserver Started");
 		
 	}
+	/*
+	* Allows keep the conexion alive
+	* Hear a request of the client and 
+*deploy the web page
+*/
 	public void run() {
 		super.run();
 		try {
