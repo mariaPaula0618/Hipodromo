@@ -20,7 +20,10 @@ public class PanelCarrera extends JPanel{
 		posicion= new int[] {0,0,0,0,0,0};
 		caballo="";
 	}
-
+	/**
+	*This class handle the graphical movement of the horse
+	* allows to put a marker to the selected horse
+	*/
 	@Override
 	protected void paintComponent(Graphics g) {
 		// TODO Auto-generated method stub
