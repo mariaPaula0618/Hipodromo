@@ -1,6 +1,13 @@
 package CancionFondo;
 import java.io.File;
 
+/*
+*Clase que permite recuperar el archivo de audio 
+*
+*
+*/
+
+
 public class AudioUtil {
     public static File getSoundFile(String fileName) {
         File soundFile = new File(fileName);
