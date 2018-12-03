@@ -46,6 +46,12 @@ public class ServidorHipodromoThread extends JFrame{
 	private static CancionUDPServer cancion;
 	private static WebServer servidorHttps;
 
+	/**
+	*This class handle all the services offered by the server
+	* keep the information about the horses in race
+	*initialize the streaming 
+	* initialize the web server 
+	*/
 	public ServidorHipodromoThread() {
 
 
@@ -84,7 +90,7 @@ public class ServidorHipodromoThread extends JFrame{
 	{
 
 
-		//Sentencias para activar la encriptacion de la información	
+		//Sentencias para activar la encriptacion de la informaciÃ³n	
 		//		System.setProperty("javax.net.ssl.keyStore", KEYSTORE_LOCATION);
 		//		System.setProperty("javax.net.ssl.keyStorePassword", KEYSTORE_PASSWORD);
 		//		SSLServerSocketFactory ssf = (SSLServerSocketFactory) SSLServerSocketFactory.getDefault();
@@ -95,9 +101,19 @@ public class ServidorHipodromoThread extends JFrame{
 			//				ServerSocket server = new ServerSocket(8030);
 
 			server= new ServerSocket(8030);
+			/*
+			*Start the time
+			*/
 			hiloTiempo.start();
+			/*
+			*Start the trasmission of the song
+			*/
 			cancion.start();
+			/*
+			*Open the conexion with the web server
+			*/
 			servidorHttps.start(); 
+			
 			while(cronometroActivo) {
 
 				Socket c = server.accept();
@@ -127,6 +143,12 @@ public class ServidorHipodromoThread extends JFrame{
 	public void cambiarAudio() {
 		audioActivo=false;
 	}
+	
+	
+	/*
+	*this method allows to show up the race to the clients
+	*all the client have to see the same race
+	*/
 	public void seguir() {
 
 		audio.start();
