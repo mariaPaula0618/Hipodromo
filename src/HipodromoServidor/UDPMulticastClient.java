@@ -48,13 +48,22 @@ public class UDPMulticastClient extends Thread{
 			try {
 				
 				multicastSocket.receive(packet);
+				/**
+				* receive information about the race, can be the position of the horses or the winner
+				*/
 				String message = new String(packet.getData(), 0, packet.getLength(),"US-ASCII");
 			String[] op= message.split(",");
+				/**
+				*In this case modify the position of the race in the frame of the clients
+				*/
 			if(op.length>1) {
 				int[] posiscion=  new int[] { Integer.parseInt(op[0]),Integer.parseInt(op[1]),Integer.parseInt(op[2]),Integer.parseInt(op[3]),Integer.parseInt(op[4]),Integer.parseInt(op[5])};
 			
 				principal.modificarPosicionCaballos(posiscion);
 			}
+				/**
+				*In this case show up a message with the winner horse
+				*/
 			else {
 				principal.ganador(message);
 			}
