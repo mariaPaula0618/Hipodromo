@@ -3,7 +3,11 @@ package CancionFondo;
 	import java.net.*;
 	import javax.sound.sampled.*;
 
-
+/*
+*
+*Clase que permite hacer la conexión del cliente para la transimision de la canción
+*Es un hilo para que sea parelala la conexión
+*/
 	public class CancionUDPCliente  extends Thread{
 		
 		public CancionUDPCliente() {
@@ -12,6 +16,11 @@ package CancionFondo;
 		
 	   // public static void main(String[] args) throws Exception {
 		
+		/*
+		*
+		*Metodo que permite mantener la conexion abierta
+		*
+		*/
 		public void run() {
 	        
 	           
@@ -32,7 +41,10 @@ package CancionFondo;
 	        System.out.println("Client: end");
 	    }
 
-
+	/*
+	* Método que permite reproducir la cancion y mantenerla sincronizada
+	*
+	*/
 	    private  synchronized void play(final InputStream in) throws Exception {
 	        AudioInputStream ais = AudioSystem.getAudioInputStream(in);
 	        try (Clip clip = AudioSystem.getClip()) {
