@@ -11,6 +11,12 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.TargetDataLine;
 
+/*
+*Class  that is responsible to the transmission of the audio to the client through  protocol UDP
+* all the clients have to listen the same audio
+*/
+
+
 public class AudioUDPServer extends Thread {
 
 	private final byte audioBuffer[] = new byte[10000];
@@ -18,12 +24,23 @@ public class AudioUDPServer extends Thread {
 	private MulticastSocket socket;
 	private InetAddress inetAddress;
 	private int port;
+	
+/*
+*builder of AudioUDPServer class
+*
+*/
 	public AudioUDPServer() {
 		// TODO Auto-generated constructor stub
 
 		setupAudio();
 		broadcastAudio();
 	}
+	
+	/*
+	*Method that is reponsible to get the audio format 
+	*
+	*
+	*/
 
 	private AudioFormat getAudioFormat() {
 		float sampleRate = 16000F;
@@ -34,6 +51,10 @@ public class AudioUDPServer extends Thread {
 		return new AudioFormat(sampleRate, sampleSizeInBits, channels, signed, bigEndian);
 	}
 
+	/*
+	*Method that is reponsible to the broadcast audio to all clients conect 
+	*
+	*/
 	private void broadcastAudio() {
 		try {
 			socket = new MulticastSocket(8000);
@@ -47,6 +68,12 @@ public class AudioUDPServer extends Thread {
 			// Handle exceptions
 		}
 	}
+	
+	/*
+	*This method allow to have a constant connection
+	*
+	*/
+	
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
