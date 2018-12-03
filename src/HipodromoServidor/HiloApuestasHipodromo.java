@@ -14,8 +14,13 @@ public class HiloApuestasHipodromo extends Thread{
 	private  Caballo[] caballos;
 	
 	private boolean carreraTerminada;
-
-
+	
+/**
+*
+* This class handle all related to the logical of the server
+*Keep information about the amount wareged to every horse
+* and store the cliente  in the database
+*/
 	public HiloApuestasHipodromo(Socket request, Caballo[] caballo) {
 		super();
 		client = request;
